@@ -1,0 +1,2 @@
+# Mania
+basis javascript game
