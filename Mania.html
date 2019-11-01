@@ -10,28 +10,22 @@
 <body>
     <div id="circle-fit"></div>
     <div id="circle-hit"></div>
-    <button id="button-start" onclick="MoveCircle()">Start</button>
+    <button id="button-start" onclick="Timer()">Start</button>
 </body>
 
 <script>
-function MoveCircle(){
-   var circle = document.getElementById("circle-hit");
-   circle.style.left = 
-}
+    var LeftPosition = 100;
+    var circle = parseInt(document.getElementById("circle-hit").offsetLeft);
+    console.log(circle);
 
-function MoveRight(){
-    var position = 0
-    setInterval(functie1(), 3000);
-}
+    function ChangePosition() {
+        circle.style.left = LeftPosition;
+        Leftposition = LeftPosition++;
+    }
 
-function functie1(){
-    alert("test");
-
-}
-function Position(){
-    position++;
-    left.style.left = position + "px";
-}
+    function Timer(){
+        setInterval("ChangePosition()", 1000);
+    }
 </script>
 
 
