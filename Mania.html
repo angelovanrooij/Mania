@@ -10,62 +10,63 @@
 <body>
     <div id="circle-fit"></div>
     <div id="circle-hit"></div>
-    <button id="button-start" onclick="Timer()">Start</button>
+    <button id="button-start" onclick="CheckButton()">Start</button>
 </body>
 
 <script>
+    var bool = new Boolean(false);
     var LeftPosition = 100;
-    var circle = parseInt(document.getElementById("circle-hit").offsetLeft);
-    console.log(circle);
+    var circle = document.getElementById("circle-hit");
+
+    function CheckButton() {
+        if (bool == false) {
+            bool = true;
+            Timer();
+           
+        } else {
+            bool = false;
+            Timer();
+        }
+        //true / false check
+        console.log(bool);
+    }
 
     function ChangePosition() {
-        circle.style.left = LeftPosition;
-        Leftposition = LeftPosition++;
+        if (LeftPosition >= 600) {
+            LeftPosition = 100;
+
+        } else {
+            LeftPosition++;
+            circle.style.left = LeftPosition + "px";
+        }
     }
 
-    function Timer(){
-        setInterval("ChangePosition()", 1000);
+    function Timer() {
+        if (bool == true) {
+            var interval = setInterval("ChangePosition()", 5);
+        }
+        else {
+            //werkt niet? <----------------------------------------
+            clearInterval(interval);
+        }
     }
+
+    //
+    //
+    //keycode up = 38
+    //keycode down = 40
+
+    function MoveCircle(key)
+    {
+        console.log(key.code);
+    }
+
+
+window.onkeydown = function(e){
+    console.log();
+    MoveCircle(e);
+}
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </html>
