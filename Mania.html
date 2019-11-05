@@ -10,62 +10,74 @@
 <body>
     <div id="circle-fit"></div>
     <div id="circle-hit"></div>
-    <button id="button-start" onclick="Timer()">Start</button>
+    <button id="button-start" onclick="CheckButton()">Start</button>
 </body>
 
+
+
 <script>
+    var bool = new Boolean(false);
     var LeftPosition = 100;
-    var circle = parseInt(document.getElementById("circle-hit").offsetLeft);
-    console.log(circle);
+    var circle = document.getElementById("circle-hit");
+    var circlefit = document.getElementById("circle-fit");
+    var lane1 = 100
+    var lane2 = 300
+
+    function CheckButton() {
+        if (bool == false) {
+            bool = true;
+        } else {
+            bool = false;
+        }
+
+        Timer();
+        //true / false check
+        console.log(bool);
+    }
 
     function ChangePosition() {
-        circle.style.left = LeftPosition;
-        Leftposition = LeftPosition++;
+
+        if (LeftPosition >= 600) {
+            //check of de circles gelijk zijn op hoogte
+            if (circle.offsetTop != circlefit.offsetTop) {
+                alert("Game over");
+            }
+
+            LeftPosition = 100;
+
+        } else {
+            LeftPosition++;
+            circle.style.left = LeftPosition + "px";
+        }
     }
 
-    function Timer(){
-        setInterval("ChangePosition()", 1000);
+    function Timer() {
+        if (bool == true) {
+           
+
+            //gaat steeds sneller 
+            var interval = setInterval("ChangePosition()", 5);
+        } else if (bool == false) {
+            //werkt niet? <---------------------------------------- (interval is undefined?)
+            clearInterval();
+        }
+    }
+
+    function MoveCircle(key) {
+        if (key.code == "ArrowDown") {
+            circlefit.style.top = lane2 + "px";
+            console.log(circlefit.style.top);
+        }
+        if (key.code == "ArrowUp") {
+            circlefit.style.top = lane1 + "px";
+            console.log(circlefit.style.top);
+        }
+    }
+
+    window.onkeydown = function (e) {
+        MoveCircle(e);
     }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </html>
